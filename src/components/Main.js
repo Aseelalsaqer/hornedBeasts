@@ -1,21 +1,29 @@
 import React from "react";
 import HornedBeasts from "./HornedBeasts";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Data from "./Data.json";
 import Row from "react-bootstrap/Row";
 
+
 class Main extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state= {
+      data: props.data
+    };
+  }
+
   render() {
+    var Data = this.state.data;
+
     return (
       <>
         <Row xs={1} md={3} className="g-4">
-          {Data.map((item) => {
+          {Data.map((dItem) => {
             return (
               <HornedBeasts
-                title={item.title}
-                imageUrl={item.image_url}
-                discription={item.description}
-                keyword={item.keyword}
+                item = {dItem}
+                callback ={this.props.onClickCallback}
               />
             );
           })}

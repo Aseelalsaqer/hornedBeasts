@@ -12,28 +12,35 @@ class HornedBeasts extends React.Component {
     };
   }
   incrementNumberOfVotes = () => {
+
     this.setState({
       numberOfVotes: this.state.numberOfVotes + 1,
     });
   };
+
+  select = ()=>{
+    this.props.callback(this.props.item);
+  };
   render() {
+    if(!this.props.item) return( <>No Item</>);
+    
     return (
       <>
-        {/* <h2>{this.props.title}</h2>
-        <img src={this.props.imageUrl}></img>
-        <p> {this.props.description}</p> */}
+        {/* <h2>{this.props.item.title}</h2>
+        <img src={this.props.item.imageUrl}></img>
+        <p> {this.props.item.description}</p> */}
         <Col>
           <Card style={{ width: "18rem" }}>
             <Card.Img
               variant="top"
-              src={this.props.imageUrl}
-              onClick={this.incrementNumberOfVotes}
+              src={this.props.item.image_url}
+              onClick={this.select}
             />
 
             <Card.Body>
-              <Card.Title>{this.props.title}</Card.Title>
+              <Card.Title>{this.props.item.title}</Card.Title>
               <Card.Text>
-                <p> {this.props.description}</p>
+                <p> {this.props.item.description}</p>
                 <p> Number Of Votes :{this.state.numberOfVotes}</p>
               </Card.Text>
               <Button variant="primary">Go somewhere</Button>
