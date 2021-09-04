@@ -12,6 +12,12 @@ class HornedBeasts extends React.Component {
   }
   incrementNumberOfVotes = () => {
     this.setState({ numberOfVotes: this.state.numberOfVotes + 1 });
+    this.props.showModal();
+    this.props.updateSelectedBeastData(
+      this.props.title,
+      this.props.imageUrl,
+      this.props.description,
+    );
   };
   render() {
     return (
@@ -26,7 +32,7 @@ class HornedBeasts extends React.Component {
             <Card.Body>
               <Card.Title>{this.props.title}</Card.Title>
               <Card.Text>Number of votes ={this.state.numberOfVotes}</Card.Text>
-              
+              <Card.Text>{this.props.description}</Card.Text>
             </Card.Body>
           </Card>
         </Col>
